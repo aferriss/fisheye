@@ -22,6 +22,8 @@ void ofApp::setup(){
     gui.add(ring.set("ring", 70, 0.01,200.0));
     gui.add(ringDiv.set("ringDiv", 70, 0.01,200.0));
     
+//    grab.setup(w, h);
+    
 }
 
 //--------------------------------------------------------------
@@ -32,6 +34,8 @@ void ofApp::update(){
         ofSaveImage(savePix, "saved/" + ofGetTimestampString() + ".png");
         save = false;
     }
+    
+//    grab.update();
 }
 
 //--------------------------------------------------------------
@@ -42,11 +46,13 @@ void ofApp::draw(){
         shader.setUniform1f("ring", ring);
         shader.setUniform1f("ringDiv", ringDiv);
         shader.setUniform2f("mouse", ofMap(ofGetMouseX(), 0, w, 0, 1),ofMap(ofGetMouseY(), 0, h, 0, 1));
+        shader.setUniform1f("time", ofGetFrameNum());
             img.draw(0,0);
+//            grab.draw(0,0, w, h);
         shader.end();
     fbo.end();
     
-    fbo.draw(0,0);
+    fbo.draw(0,0,w,h);
     gui.draw();
 }
 

@@ -30,4 +30,6 @@ class ofApp : public ofBaseApp{
     ofxPanel gui;
     ofParameter<float> ring;
     ofParameter<float> ringDiv;
+    
+    ofVideoGrabber grab;
 };
